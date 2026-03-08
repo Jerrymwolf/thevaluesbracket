@@ -1,0 +1,35 @@
+{
+  "name": "the-values-bracket",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "drizzle-orm": "^0.45.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.35",
+    "framer-motion": "^12.23.26",
+    "html-to-image": "^1.11.13",
+    "lucide-react": "^0.562.0",
+    "nanoid": "^5.1.6",
+    "next": "14.2.35",
+    "postcss": "^8",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5",
+    "zustand": "^5.0.9"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.3",
+    "drizzle-kit": "^0.31.8"
+  }
+}
