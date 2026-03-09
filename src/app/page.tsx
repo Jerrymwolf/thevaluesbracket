@@ -102,7 +102,7 @@ export default function Home() {
           <p className="text-xs sm:text-sm text-gray-400">
             Brought to you by Wolf Partners
           </p>
-          <a
+          {/* <a
             href="https://buymeacoffee.com/thew0lf"
             target="_blank"
             rel="noopener noreferrer"
@@ -110,7 +110,7 @@ export default function Home() {
           >
             <Coffee size={14} />
             Buy me a coffee
-          </a>
+          </a> */}
         </div>
       </footer>
     </div>
