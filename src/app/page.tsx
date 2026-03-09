@@ -88,7 +88,7 @@ export default function Home() {
       <footer className="flex-shrink-0 py-4 border-t border-gray-100 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center gap-2">
           <p className="text-xs sm:text-sm text-gray-400">
-            brought to you by The Wolf&apos;s
+            Brought to you by Wolf Partners
           </p>
           <a
             href="https://buymeacoffee.com/thew0lf"
