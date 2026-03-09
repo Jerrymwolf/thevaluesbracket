@@ -14,6 +14,11 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'https://thevaluesbracket.vercel.app'
+  ),
   title: {
     default: 'The Values Bracket',
     template: '%s | The Values Bracket',

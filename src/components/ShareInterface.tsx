@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Download, Link2, Share2, Check, Loader2, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Download, Link2, Share2, Check, Loader2, Linkedin, Facebook } from 'lucide-react';
 import ValuesCardBracket, { CARD_WIDTH, type BracketCardValue } from './ValuesCardBracket';
 import { downloadCard, shareCard, copyToClipboard } from '@/lib/utils/imageGeneration';
 
@@ -210,7 +210,9 @@ export default function ShareInterface({ values, shareUrl }: ShareInterfaceProps
             aria-label="Share on X"
             className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors flex items-center justify-center"
           >
-            <Twitter size={16} />
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
           </a>
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
