@@ -91,7 +91,7 @@ export default function Home() {
             </motion.div>
 
             <motion.p variants={itemVariants} className="text-sm sm:text-base text-gray-500">
-              21 values · ~5 minutes · No signup
+              22 values · ~5 minutes · No signup
             </motion.p>
           </motion.div>
         </div>

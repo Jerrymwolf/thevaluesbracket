@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     default: 'The Values Bracket',
     template: '%s | The Values Bracket',
   },
-  description: 'Sort 21 values, watch them face off in a bracket, and discover your core 5. Free, fun, ~5 minutes.',
+  description: 'Sort 22 values, watch them face off in a bracket, and discover your core 5. Free, fun, ~5 minutes.',
   keywords: ['values bracket', 'core values', 'values assessment', 'personal values', 'self-discovery', 'values tournament'],
   authors: [{ name: 'CultureWright Consulting' }],
   creator: 'CultureWright Consulting',
@@ -33,12 +33,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     siteName: 'The Values Bracket',
     title: 'The Values Bracket',
-    description: 'Sort 21 values, watch them face off, and discover your core 5.',
+    description: 'Sort 22 values, watch them face off, and discover your core 5.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'The Values Bracket',
-    description: 'Sort 21 values, watch them face off, and discover your core 5.',
+    description: 'Sort 22 values, watch them face off, and discover your core 5.',
   },
   robots: {
     index: true,

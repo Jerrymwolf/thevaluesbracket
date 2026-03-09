@@ -15,7 +15,7 @@ const STEPS = [
     icon: Target,
     title: 'Sort',
     time: '~1 min',
-    description: 'Swipe through 21 values. How important is each one to you?',
+    description: 'Swipe through 22 values. How important is each one to you?',
   },
   {
     icon: Trophy,
