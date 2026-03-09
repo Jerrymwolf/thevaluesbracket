@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Coffee } from 'lucide-react';
+// import { Coffee } from 'lucide-react';
 import Image from 'next/image';
 import Logo from '@/components/Logo';
 
