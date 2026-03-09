@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Coffee } from 'lucide-react';
+import Image from 'next/image';
 import Logo from '@/components/Logo';
 
 export default function Home() {
@@ -52,6 +53,17 @@ export default function Home() {
             animate="visible"
             className="text-center"
           >
+            <motion.div variants={itemVariants} className="flex justify-center mb-4 sm:mb-6">
+              <Image
+                src="/bracket-hero.png"
+                alt="Values Bracket — magnifying glass revealing a tournament bracket"
+                width={280}
+                height={280}
+                className="w-36 h-36 sm:w-52 sm:h-52 lg:w-64 lg:h-64 object-contain drop-shadow-lg"
+                priority
+              />
+            </motion.div>
+
             <motion.h1
               variants={itemVariants}
               className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-brand-900 leading-[1.1] mb-4 sm:mb-6"
