@@ -14,8 +14,6 @@ interface ValuesCardBracketProps {
 }
 
 const CARD_WIDTH = 1500;
-const CARD_HEIGHT = 900;
-const ASPECT_RATIO = CARD_WIDTH / CARD_HEIGHT;
 
 const RANK_LABELS = ['1st', '2nd', '3rd', '4th', '5th'];
 const RANK_COLORS = [
@@ -43,7 +41,6 @@ function getSizes(width: number) {
 
 const ValuesCardBracket = forwardRef<HTMLDivElement, ValuesCardBracketProps>(
   ({ values, containerWidth }, ref) => {
-    const height = containerWidth / ASPECT_RATIO;
     const sizes = getSizes(containerWidth);
 
     return (
@@ -52,7 +49,6 @@ const ValuesCardBracket = forwardRef<HTMLDivElement, ValuesCardBracketProps>(
         className="relative overflow-hidden bg-white"
         style={{
           width: `${containerWidth}px`,
-          height: `${height}px`,
         }}
       >
         {/* Left Prism Gradient Bar */}
@@ -75,7 +71,7 @@ const ValuesCardBracket = forwardRef<HTMLDivElement, ValuesCardBracketProps>(
 
         {/* Content */}
         <div
-          className="relative h-full flex flex-col"
+          className="relative flex flex-col"
           style={{
             paddingLeft: `${sizes.gradientBar + sizes.padding}px`,
             paddingRight: `${sizes.gradientBar + sizes.padding}px`,
@@ -101,7 +97,7 @@ const ValuesCardBracket = forwardRef<HTMLDivElement, ValuesCardBracketProps>(
           </div>
 
           {/* Values List - Vertical layout */}
-          <div className="flex-1 flex flex-col justify-center" style={{ gap: `${sizes.rowGap}px` }}>
+          <div className="flex flex-col" style={{ gap: `${sizes.rowGap}px` }}>
             {values.slice(0, 5).map((value, index) => (
               <div
                 key={value.id}
@@ -167,4 +163,4 @@ const ValuesCardBracket = forwardRef<HTMLDivElement, ValuesCardBracketProps>(
 ValuesCardBracket.displayName = 'ValuesCardBracket';
 
 export default ValuesCardBracket;
-export { CARD_WIDTH, CARD_HEIGHT };
+export { CARD_WIDTH };

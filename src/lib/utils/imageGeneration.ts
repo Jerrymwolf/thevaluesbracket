@@ -2,11 +2,6 @@ import { toPng, toBlob } from 'html-to-image';
 
 type CardFormat = 'index-card' | 'business-card';
 
-const DIMENSIONS: Record<CardFormat, { width: number; height: number }> = {
-  'index-card': { width: 1500, height: 900 },
-  'business-card': { width: 1050, height: 600 },
-};
-
 interface GenerateOptions {
   pixelRatio?: number;
   backgroundColor?: string;
@@ -20,7 +15,8 @@ export async function generateCardBlob(
   format: CardFormat,
   options: GenerateOptions = {}
 ): Promise<Blob> {
-  const { width, height } = DIMENSIONS[format];
+  const width = element.offsetWidth;
+  const height = element.offsetHeight;
   const { pixelRatio = 1, backgroundColor = '#ffffff' } = options;
 
   const blob = await toBlob(element, {
@@ -50,7 +46,8 @@ export async function generateCardDataUrl(
   format: CardFormat,
   options: GenerateOptions = {}
 ): Promise<string> {
-  const { width, height } = DIMENSIONS[format];
+  const width = element.offsetWidth;
+  const height = element.offsetHeight;
   const { pixelRatio = 1, backgroundColor = '#ffffff' } = options;
 
   const dataUrl = await toPng(element, {
