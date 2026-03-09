@@ -2,13 +2,8 @@
 
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import type { SortCategory, BracketState } from '@/lib/types';
+import type { SortCategory, BracketState, CustomValue } from '@/lib/types';
 import { generateBracket, advanceBracket } from '@/lib/utils/bracket';
-
-interface CustomValue {
-  id: string;
-  name: string;
-}
 
 interface AssessmentState {
   sessionId: string | null;
@@ -23,7 +18,7 @@ interface AssessmentState {
     somewhat: string[];
     less: string[];
   };
-  customValue: CustomValue | null;
+  customValues: CustomValue[];
 
   // Bracket phase
   bracket: BracketState | null;
@@ -42,7 +37,7 @@ interface AssessmentActions {
   // Sorting
   sortValue: (valueId: string, category: SortCategory) => void;
   undoLastSort: () => void;
-  addCustomValue: (name: string) => void;
+  addCustomValue: (name: string, definition?: string) => void;
 
   // Bracket
   initBracket: (veryImportantIds: string[]) => void;
@@ -64,7 +59,7 @@ const initialState: AssessmentState = {
   shuffledValueIds: [],
   currentCardIndex: 0,
   sortedValues: { very: [], somewhat: [], less: [] },
-  customValue: null,
+  customValues: [],
   bracket: null,
   rankedValues: [],
   shareSlug: null,
@@ -108,11 +103,12 @@ export const useAssessmentStore = create<AssessmentStore>()(
           };
         }),
 
-      addCustomValue: (name) =>
+      addCustomValue: (name, definition?) =>
         set((state) => {
-          const customId = `custom_${Date.now()}`;
+          const customId = `custom_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+          const newCustomValue: CustomValue = { id: customId, name, definition: definition || undefined };
           return {
-            customValue: { id: customId, name },
+            customValues: [...state.customValues, newCustomValue],
             shuffledValueIds: [...state.shuffledValueIds, customId],
             sortedValues: {
               ...state.sortedValues,
@@ -144,10 +140,16 @@ export const useAssessmentStore = create<AssessmentStore>()(
     }),
     {
       name: 'valuesprofile-assessment',
-      version: 2,
+      version: 3,
       migrate: (persisted: unknown, version: number) => {
         if (version < 2) {
           return initialState;
+        }
+        if (version === 2) {
+          // v2 → v3: wrap single customValue into customValues array
+          const old = persisted as Record<string, unknown>;
+          const cv = old.customValue as CustomValue | null;
+          return { ...old, customValues: cv ? [cv] : [], customValue: undefined } as unknown as AssessmentState;
         }
         return persisted as AssessmentState;
       },

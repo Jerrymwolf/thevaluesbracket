@@ -24,10 +24,11 @@ interface RequestBody {
   };
   rankedValues: string[];
   bracketMatchups?: BracketMatchupData[];
-  customValue?: {
+  customValues?: {
     id: string;
     name: string;
-  };
+    definition?: string;
+  }[];
 }
 
 export async function POST(request: Request) {
@@ -39,7 +40,7 @@ export async function POST(request: Request) {
       sortedValues,
       rankedValues,
       bracketMatchups,
-      customValue,
+      customValues,
     } = body;
 
     if (!sessionId || !sortedValues || !rankedValues) {
@@ -131,8 +132,9 @@ export async function POST(request: Request) {
     const top5 = rankedValues.slice(0, 5).map((id, index) => {
       const value = VALUES_BY_ID[id];
       const isCustom = id.startsWith('custom_');
-      const valueName = isCustom && customValue?.id === id
-        ? customValue.name
+      const cv = isCustom ? customValues?.find((c) => c.id === id) : null;
+      const valueName = cv
+        ? cv.name
         : value?.name || id;
 
       return {
@@ -140,7 +142,7 @@ export async function POST(request: Request) {
         valueId: id,
         valueName,
         tagline: isCustom
-          ? 'A value you chose for yourself'
+          ? (cv?.definition || 'A value you chose for yourself')
           : getFallbackTagline(valueName),
       };
     });

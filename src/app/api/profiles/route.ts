@@ -8,14 +8,14 @@ import { getFallbackTagline } from '@/lib/data/fallbackTaglines';
 interface RequestBody {
   sessionId: string;
   rankedValues: string[];
-  customValue?: { id: string; name: string };
+  customValues?: { id: string; name: string; definition?: string }[];
 }
 
 // POST: Create a new profile
 export async function POST(request: Request) {
   try {
     const body: RequestBody = await request.json();
-    const { sessionId, rankedValues, customValue } = body;
+    const { sessionId, rankedValues, customValues } = body;
 
     if (!sessionId || !rankedValues || rankedValues.length === 0) {
       return NextResponse.json(
@@ -30,11 +30,12 @@ export async function POST(request: Request) {
     const top5 = rankedValues.slice(0, 5).map((id, index) => {
       const value = VALUES_BY_ID[id];
       const isCustom = id.startsWith('custom_');
-      const valueName = isCustom && customValue?.id === id
-        ? customValue.name
+      const cv = isCustom ? customValues?.find((c) => c.id === id) : null;
+      const valueName = cv
+        ? cv.name
         : value?.name || id;
       const tagline = isCustom
-        ? 'A value you chose for yourself'
+        ? (cv?.definition || 'A value you chose for yourself')
         : getFallbackTagline(valueName);
 
       return {

@@ -8,6 +8,13 @@ export interface Value {
   category: ValueCategory;
 }
 
+// === CUSTOM VALUES ===
+export interface CustomValue {
+  id: string;
+  name: string;
+  definition?: string;
+}
+
 // === SORTING ===
 export type SortCategory = 'very' | 'somewhat' | 'less';
 

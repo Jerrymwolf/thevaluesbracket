@@ -18,7 +18,7 @@ export default function BracketPage() {
   const sessionId = useAssessmentStore((s) => s.sessionId);
   const sortedValues = useAssessmentStore((s) => s.sortedValues);
   const bracket = useAssessmentStore((s) => s.bracket);
-  const customValue = useAssessmentStore((s) => s.customValue);
+  const customValues = useAssessmentStore((s) => s.customValues);
   const initBracket = useAssessmentStore((s) => s.initBracket);
   const pickBracketWinner = useAssessmentStore((s) => s.pickBracketWinner);
 
@@ -106,14 +106,14 @@ export default function BracketPage() {
           <MatchupCard
             key={currentMatchup.id}
             matchup={currentMatchup}
-            customValue={customValue}
+            customValues={customValues}
             onPick={(winnerId) => pickBracketWinner(currentMatchup.id, winnerId)}
           />
         )}
 
         {/* Mini bracket */}
         <div className="mt-8">
-          <BracketView bracket={bracket} customValue={customValue} />
+          <BracketView bracket={bracket} customValues={customValues} />
         </div>
       </div>
     </div>

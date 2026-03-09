@@ -3,25 +3,28 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VALUES_BY_ID, CATEGORY_COLORS } from '@/lib/data/values';
-import type { BracketMatchup } from '@/lib/types';
+import type { BracketMatchup, CustomValue } from '@/lib/types';
 
 interface MatchupCardProps {
   matchup: BracketMatchup;
-  customValue?: { id: string; name: string } | null;
+  customValues?: CustomValue[];
   onPick: (winnerId: string) => void;
 }
 
-export default function MatchupCard({ matchup, customValue, onPick }: MatchupCardProps) {
+export default function MatchupCard({ matchup, customValues, onPick }: MatchupCardProps) {
   const [picked, setPicked] = useState<string | null>(null);
 
   const getValueInfo = (id: string | null) => {
     if (!id) return null;
-    if (id.startsWith('custom_') && customValue?.id === id) {
-      return {
-        name: customValue.name,
-        cardText: 'A value that matters deeply to you',
-        category: 'custom' as const,
-      };
+    if (id.startsWith('custom_')) {
+      const cv = customValues?.find((c) => c.id === id);
+      if (cv) {
+        return {
+          name: cv.name,
+          cardText: cv.definition || 'A value that matters deeply to you',
+          category: 'custom' as const,
+        };
+      }
     }
     const v = VALUES_BY_ID[id];
     return v ? { name: v.name, cardText: v.cardText, category: v.category } : null;

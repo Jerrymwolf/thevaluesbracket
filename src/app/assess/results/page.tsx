@@ -17,7 +17,7 @@ export default function ResultsPage() {
   const {
     sessionId,
     rankedValues,
-    customValue,
+    customValues,
     bracket,
     shareSlug,
     setShareSlug,
@@ -33,18 +33,19 @@ export default function ResultsPage() {
     return rankedValues.slice(0, 5).map((id) => {
       const value = VALUES_BY_ID[id];
       const isCustom = id.startsWith('custom_');
+      const cv = isCustom ? customValues?.find((c) => c.id === id) : null;
 
-      const valueName = isCustom && customValue?.id === id
-        ? customValue.name
+      const valueName = cv
+        ? cv.name
         : value?.name || 'Value';
 
       const tagline = isCustom
-        ? 'A value you chose for yourself'
+        ? (cv?.definition || 'A value you chose for yourself')
         : getFallbackTagline(valueName);
 
       return { id, name: valueName, tagline };
     }).filter((v) => v.name);
-  }, [rankedValues, customValue]);
+  }, [rankedValues, customValues]);
 
   const createProfile = useCallback(async () => {
     if (!sessionId || rankedValues.length === 0) return;
@@ -59,7 +60,7 @@ export default function ResultsPage() {
         body: JSON.stringify({
           sessionId,
           rankedValues,
-          customValue,
+          customValues,
         }),
       });
 
@@ -85,7 +86,7 @@ export default function ResultsPage() {
             roundName: m.roundName,
             isConsolation: m.isConsolation,
           })),
-          customValue,
+          customValues,
         }),
       }).catch((err) => console.error('Session save error:', err));
     } catch (err) {
@@ -94,7 +95,7 @@ export default function ResultsPage() {
     } finally {
       setIsCreatingProfile(false);
     }
-  }, [sessionId, rankedValues, customValue, setShareSlug, consentResearch, sortedValues, bracket]);
+  }, [sessionId, rankedValues, customValues, setShareSlug, consentResearch, sortedValues, bracket]);
 
   useEffect(() => {
     if (!isHydrated) return;

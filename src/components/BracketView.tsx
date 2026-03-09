@@ -4,16 +4,19 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { VALUES_BY_ID, CATEGORY_COLORS } from '@/lib/data/values';
-import type { BracketState, BracketMatchup } from '@/lib/types';
+import type { BracketState, BracketMatchup, CustomValue } from '@/lib/types';
 
 interface BracketViewProps {
   bracket: BracketState;
-  customValue?: { id: string; name: string } | null;
+  customValues?: CustomValue[];
 }
 
-function getValueName(id: string | null, customValue?: { id: string; name: string } | null): string {
+function getValueName(id: string | null, customValues?: CustomValue[]): string {
   if (!id) return '?';
-  if (id.startsWith('custom_') && customValue?.id === id) return customValue.name;
+  if (id.startsWith('custom_')) {
+    const cv = customValues?.find((c) => c.id === id);
+    if (cv) return cv.name;
+  }
   return VALUES_BY_ID[id]?.name ?? '?';
 }
 
@@ -25,15 +28,15 @@ function getValueColor(id: string | null): string {
 
 function MatchSlot({
   matchup,
-  customValue,
+  customValues,
   isCurrentMatch,
 }: {
   matchup: BracketMatchup;
-  customValue?: { id: string; name: string } | null;
+  customValues?: CustomValue[];
   isCurrentMatch: boolean;
 }) {
-  const nameA = getValueName(matchup.valueA, customValue);
-  const nameB = getValueName(matchup.valueB, customValue);
+  const nameA = getValueName(matchup.valueA, customValues);
+  const nameB = getValueName(matchup.valueB, customValues);
   const colorA = matchup.valueA ? getValueColor(matchup.valueA) : '#D1D5DB';
   const colorB = matchup.valueB ? getValueColor(matchup.valueB) : '#D1D5DB';
 
@@ -64,7 +67,7 @@ function MatchSlot({
   );
 }
 
-export default function BracketView({ bracket, customValue }: BracketViewProps) {
+export default function BracketView({ bracket, customValues }: BracketViewProps) {
   const [collapsed, setCollapsed] = useState(false);
 
   const totalRounds = Math.log2(bracket.size);
@@ -125,7 +128,7 @@ export default function BracketView({ bracket, customValue }: BracketViewProps) 
                         <MatchSlot
                           key={matchup.id}
                           matchup={matchup}
-                          customValue={customValue}
+                          customValues={customValues}
                           isCurrentMatch={matchup.id === currentMatchId}
                         />
                       ))}
