@@ -65,6 +65,7 @@ export async function POST(request: Request) {
         .set({
           completedAt: new Date(),
           consentResearch,
+          customValues: customValues || null,
         })
         .where(eq(sessions.id, sessionId));
       dbSessionId = sessionId;
@@ -75,6 +76,7 @@ export async function POST(request: Request) {
           id: sessionId,
           completedAt: new Date(),
           consentResearch,
+          customValues: customValues || null,
         })
         .returning();
       dbSessionId = newSession.id;
@@ -154,6 +156,7 @@ export async function POST(request: Request) {
         .set({
           profileJson: {
             top5,
+            customValues: customValues || [],
             bracketMatchups: consentResearch ? bracketMatchups : undefined,
             createdAt: new Date().toISOString(),
           },
@@ -166,6 +169,7 @@ export async function POST(request: Request) {
         shareSlug: profileSlug,
         profileJson: {
           top5,
+          customValues: customValues || [],
           bracketMatchups: consentResearch ? bracketMatchups : undefined,
           createdAt: new Date().toISOString(),
         },

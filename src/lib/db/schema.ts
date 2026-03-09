@@ -23,6 +23,11 @@ export const sessions = pgTable('sessions', {
     leadershipRole?: boolean;
     country?: string;
   }>(),
+  customValues: jsonb('custom_values').$type<{
+    id: string;
+    name: string;
+    definition?: string;
+  }[]>(),
 });
 
 // ==========================================
@@ -99,6 +104,7 @@ export const profiles = pgTable(
           definition?: string;
           behavioralAnchors?: string[];
         }[];
+        customValues?: { id: string; name: string; definition?: string }[];
         bracketMatchups?: unknown[];
         createdAt: string;
       }>()

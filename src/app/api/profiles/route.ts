@@ -70,6 +70,7 @@ export async function POST(request: Request) {
           shareSlug,
           profileJson: {
             top5,
+            customValues: customValues || [],
             createdAt: new Date().toISOString(),
           },
         })
