@@ -93,8 +93,8 @@ export default function ShareInterface({ values, shareUrl }: ShareInterfaceProps
       {/* Card preview */}
       <div
         ref={previewContainerRef}
-        className="flex flex-col items-center mb-6"
-        style={{ maxWidth: PREVIEW_MAX_WIDTH, width: '100%', margin: '0 auto' }}
+        className="flex flex-col items-center mb-8 mx-auto"
+        style={{ maxWidth: PREVIEW_MAX_WIDTH, width: '100%' }}
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -112,10 +112,10 @@ export default function ShareInterface({ values, shareUrl }: ShareInterfaceProps
         </p>
       </div>
 
-      {/* Hidden export card at full resolution */}
+      {/* Hidden export card at full resolution (off-screen for capture) */}
       <div
-        className="fixed top-0 left-0 opacity-0 pointer-events-none"
-        style={{ zIndex: -1 }}
+        className="fixed opacity-0 pointer-events-none"
+        style={{ top: 0, left: '-9999px', zIndex: -1 }}
         aria-hidden="true"
       >
         <ValuesCardBracket

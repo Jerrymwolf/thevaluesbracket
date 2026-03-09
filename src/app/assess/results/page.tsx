@@ -142,7 +142,7 @@ export default function ResultsPage() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-col"
+      className="flex flex-col pb-4"
     >
       {/* Celebration header */}
       <div className="text-center mb-8">

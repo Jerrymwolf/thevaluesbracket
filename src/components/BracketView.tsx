@@ -110,11 +110,11 @@ export default function BracketView({ bracket, customValue }: BracketViewProps) 
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden"
+            className="overflow-y-hidden overflow-x-visible"
           >
-            <div className="flex gap-3 overflow-x-auto pb-2 px-1">
+            <div className="flex gap-2 overflow-x-auto pb-2 px-1">
               {roundGroups.map((group) => (
-                <div key={group.name} className="flex-shrink-0 min-w-[120px]">
+                <div key={group.name} className="flex-shrink-0 w-[130px]">
                   <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1.5 text-center">
                     {group.name}
                   </p>

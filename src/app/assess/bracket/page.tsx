@@ -104,6 +104,7 @@ export default function BracketPage() {
         {/* Current matchup */}
         {currentMatchup && (
           <MatchupCard
+            key={currentMatchup.id}
             matchup={currentMatchup}
             customValue={customValue}
             onPick={(winnerId) => pickBracketWinner(currentMatchup.id, winnerId)}
