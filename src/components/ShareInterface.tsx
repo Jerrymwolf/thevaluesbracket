@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Download, Link2, Share2, Check, Loader2 } from 'lucide-react';
+import { Download, Link2, Share2, Check, Loader2, Linkedin, Twitter, Facebook } from 'lucide-react';
 import ValuesCardBracket, { CARD_WIDTH, type BracketCardValue } from './ValuesCardBracket';
 import { downloadCard, shareCard, copyToClipboard } from '@/lib/utils/imageGeneration';
 
@@ -189,6 +189,40 @@ export default function ShareInterface({ values, shareUrl }: ShareInterfaceProps
           </button>
         )}
       </div>
+
+      {/* Social media share links */}
+      {shareUrl && (
+        <div className="flex items-center justify-center gap-3 mt-4">
+          <span className="text-xs text-gray-400">Share on</span>
+          <a
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on LinkedIn"
+            className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors flex items-center justify-center"
+          >
+            <Linkedin size={16} />
+          </a>
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('I just discovered my core values with The Values Bracket! 🏆')}&url=${encodeURIComponent(shareUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on X"
+            className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors flex items-center justify-center"
+          >
+            <Twitter size={16} />
+          </a>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Share on Facebook"
+            className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors flex items-center justify-center"
+          >
+            <Facebook size={16} />
+          </a>
+        </div>
+      )}
 
       {shareUrl && (
         <div className="mt-4 p-3 bg-gray-50 rounded-lg">

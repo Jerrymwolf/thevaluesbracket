@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Trophy, RotateCcw, Coffee } from 'lucide-react';
+import { Trophy, RotateCcw, Sparkles } from 'lucide-react';
 import ShareInterface from '@/components/ShareInterface';
 import { useAssessmentStore } from '@/stores/assessmentStore';
 import { VALUES_BY_ID } from '@/lib/data/values';
@@ -156,10 +156,13 @@ export default function ResultsPage() {
           <Trophy className="w-8 h-8 text-white" />
         </motion.div>
         <h1 className="text-2xl font-bold text-brand-900 mb-2">
-          Your Core 5 Values
+          Your Top 5 Values
         </h1>
         <p className="text-gray-600">
           The bracket has spoken. Here&apos;s what matters most to you.
+        </p>
+        <p className="text-sm text-gray-500 mt-1">
+          Feel free to download the card and share — it&apos;s optimized for social media.
         </p>
       </div>
 
@@ -185,20 +188,15 @@ export default function ResultsPage() {
       {/* Share interface with card preview */}
       <ShareInterface values={valuesForCard} shareUrl={shareUrl} />
 
-      {/* Donation */}
+      {/* More ValuesApps coming soon */}
       <div className="mt-10 pt-6 border-t border-gray-200 text-center">
-        <p className="text-sm text-gray-500 mb-3">
-          The Values Bracket is free. If it helped you, consider buying me a coffee.
+        <Sparkles className="w-5 h-5 text-brand-500 mx-auto mb-2" />
+        <p className="text-sm text-gray-600 font-medium">
+          More ValuesApps coming soon.
         </p>
-        <a
-          href="https://buymeacoffee.com/thew0lf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FFDD00] hover:bg-[#FFE44D] text-black rounded-full text-sm font-semibold transition-colors shadow-sm"
-        >
-          <Coffee size={18} />
-          Buy me a coffee
-        </a>
+        <p className="text-xs text-gray-400 mt-1">
+          Stay tuned for new tools to explore what matters most.
+        </p>
       </div>
 
       {/* Start over */}

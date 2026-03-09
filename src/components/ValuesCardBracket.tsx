@@ -151,7 +151,7 @@ const ValuesCardBracket = forwardRef<HTMLDivElement, ValuesCardBracketProps>(
               className="text-gray-500 font-medium tracking-wide"
               style={{ fontSize: `${sizes.footer}px` }}
             >
-              thevaluesbracket.com
+              thevaluesbracket.vercel.app
             </span>
           </div>
         </div>

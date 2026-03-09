@@ -104,7 +104,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
             MY CORE {values.length} VALUES
           </h1>
           <p className="text-white/70 text-sm">
-            thevaluesbracket.com
+            thevaluesbracket.vercel.app
           </p>
         </div>
 
@@ -152,7 +152,8 @@ export default async function PublicProfilePage({ params }: PageProps) {
 
         {/* Footer */}
         <div className="text-center mt-12 space-y-2">
-          <p className="text-white/50 text-sm">thevaluesbracket.com</p>
+          <p className="text-white/50 text-sm">thevaluesbracket.vercel.app</p>
+          {/* Coffee link hidden — kept for easy re-enabling
           <a
             href="https://buymeacoffee.com/thew0lf"
             target="_blank"
@@ -167,6 +168,7 @@ export default async function PublicProfilePage({ params }: PageProps) {
             </svg>
             Support the creator
           </a>
+          */}
         </div>
       </div>
     </div>
